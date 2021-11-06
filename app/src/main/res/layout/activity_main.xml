@@ -448,6 +448,7 @@
 
 
         <LinearLayout
+            android:id="@+id/unityads"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:background="@drawable/titlebar_bg"
@@ -460,16 +461,16 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
+                app:layout_constraintBottom_toBottomOf="parent" />
 
 
             <ImageView
                 android:id="@+id/premium"
-                android:layout_width="150dp"
-                android:layout_height="38dp"
+                android:layout_width="49dp"
+                android:layout_height="34dp"
                 android:layout_gravity="center_vertical"
-                />
+
+                android:background="@drawable/ic_premium" />
 
         </LinearLayout>
 
@@ -481,7 +482,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#A9000000"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:orientation="horizontal">
 
 
     </LinearLayout>

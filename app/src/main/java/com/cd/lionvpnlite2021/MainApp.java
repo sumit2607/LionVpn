@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.LinearLayout;
 
 import androidx.multidex.MultiDexApplication;
 
@@ -31,6 +32,7 @@ public class MainApp extends MultiDexApplication {
     private static MainApp mAppInstance;
     UnifiedSDK unifiedSDK;
 
+
     public static Context getContext() {
         return context;
     }
@@ -46,6 +48,8 @@ public class MainApp extends MultiDexApplication {
         mAppInstance = this;
         context = this;
         initHydraSdk();
+
+
     }
 
     public void initHydraSdk() {

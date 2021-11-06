@@ -2,8 +2,13 @@ package com.cd.lionvpnlite2021.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +42,9 @@ import com.cd.lionvpnlite2021.dialog.CountryData;
 import com.cd.lionvpnlite2021.dialog.LoginDialog;
 import com.google.gson.Gson;
 import com.northghost.caketube.CaketubeTransport;
+import com.unity3d.ads.UnityAds;
+import com.unity3d.services.banners.BannerView;
+import com.unity3d.services.banners.UnityBannerSize;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -49,11 +57,17 @@ import static com.cd.lionvpnlite2021.utils.BillConfig.COUNTRY_DATA;
 import static com.cd.lionvpnlite2021.utils.BillConfig.SELECTED_COUNTRY;
 
 public class MainActivity extends UIActivity implements TrafficListener, VpnStateListener, LoginDialog.LoginConfirmationInterface {
-
+    private ImageView img_connect;
     private String selectedCountry = "";
     private String ServerIPaddress = "00.000.000.00";
     @BindView(R.id.uploading_graph)
     protected LottieAnimationView uploading_state_animation;
+    private LinearLayout unityads;
+    public   String intiads = "Interstitial_Android";
+    private TextView RLDownloadLayout;
+    private String GameID = "4437689";
+    private   String BANNER_ID = "Banner_Android";
+    private  boolean test = true;
 
     @BindView(R.id.downloading_graph)
     protected LottieAnimationView downloading_state_animation;
@@ -63,7 +77,14 @@ public class MainActivity extends UIActivity implements TrafficListener, VpnStat
         super.onStart();
         UnifiedSDK.addTrafficListener(this);
         UnifiedSDK.addVpnStateListener(this);
+
     }
+
+
+
+
+
+
 
 
     @Override

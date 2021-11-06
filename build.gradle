@@ -12,6 +12,9 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        flatDir {
+            dirs 'unity-ads.aar'
+        }
         maven {
             url "https://jitpack.io"
             credentials { username "48a9b4c06b5dabbc03328ddcdbb7dfd8fab253ae" }

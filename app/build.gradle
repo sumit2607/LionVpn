@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         applicationId "com.softek.firevpnpro"
-        minSdkVersion 16
+        minSdkVersion 20
         targetSdkVersion 30
         versionCode 3
         versionName "1.2"
@@ -43,7 +43,7 @@ android {
         buildConfigField "String", "SIX_MONTH", "\"put_your_sixmonth_subscription_id\""
         buildConfigField "String", "YEARLY", "\"put_your_one_year_subscription_id\""
 
-        buildConfigField "Boolean", "FACEBOOK_AD", "true"
+        buildConfigField "Boolean", "FACEBOOK_AD", "false"
         buildConfigField "Boolean", "GOOGlE_AD", "false"
         buildConfigField "String", "FACEBOOK_BANNER", "\"IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID\""
        // buildConfigField "String", "FACEBOOK_INTERSTITIAL", "\"1267409250387561_1267409890387497\""
@@ -116,5 +116,6 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation(name:'unity-ads', ext:'aar')
 }
 

@@ -55,6 +55,9 @@ import com.cd.lionvpnlite2021.utils.AdModFacebook;
 import com.cd.lionvpnlite2021.utils.Converter;
 import com.facebook.ads.AdError;
 import com.google.android.gms.ads.MobileAds;
+import com.unity3d.ads.UnityAds;
+import com.unity3d.services.banners.BannerView;
+import com.unity3d.services.banners.UnityBannerSize;
 
 import java.util.Locale;
 
@@ -81,6 +84,12 @@ public abstract class UIActivity extends AppCompatActivity implements View.OnCli
     public String SKU_DELAROY_SIXMONTH;
     public String SKU_DELAROY_YEARLY;
     public String base64EncodedPublicKey;
+    private LinearLayout unityads;
+    public String intiads = "Interstitial_Android";
+    private TextView RLDownloadLayout;
+    private String GameID = "4437689";
+    private String BANNER_ID = "Banner_Android";
+    private boolean test = true;
     @BindView(R.id.server_ip)
     TextView server_ip;
     @BindView(R.id.img_connect)
@@ -618,9 +627,6 @@ public abstract class UIActivity extends AppCompatActivity implements View.OnCli
     public void onConnectBtnClick(View v) {
 
 
-
-
-
         isConnected(new Callback<Boolean>() {
             @Override
             public void success(@NonNull Boolean aBoolean) {
@@ -631,8 +637,7 @@ public abstract class UIActivity extends AppCompatActivity implements View.OnCli
                     builder.setCancelable(false)
                             .setPositiveButton("Disconnect ", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    if (interstitialAd.isAdLoaded())
-                                        interstitialAd.show();
+                                    LoadInterstitialAd();
 
 
                                     disconnectFromVnp();
@@ -879,123 +884,40 @@ public abstract class UIActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void LoadInterstitialAd() {
-        /*if (BuildConfig.GOOGlE_AD) {
-            AdMod.buildAdFullScreen(getApplicationContext(), new AdMod.MyAdListener() {
-                @Override
-                public void onAdClicked() {
-                }
+        img_connect = findViewById(R.id.img_connect);
+        img_connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UnityAds.isInitialized()) {
+                    UnityAds.load(intiads);
 
-                @Override
-                public void onAdClosed() {
-                }
+                } else new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        UnityAds.load(intiads);
+                    }
 
-                @Override
-                public void onAdLoaded() {
-                }
+                }, 2000);
+                img_connect.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (UnityAds.isReady(intiads)) {
+                            UnityAds.show(UIActivity.this, intiads);
+                        }
+                    }
+                });
 
-                @Override
-                public void onAdOpened() {
-                }
 
-                @Override
-                public void onFaildToLoad(int i) {
-                }
-            });
-        } else if (BuildConfig.FACEBOOK_AD) {
-            AdModFacebook.buildAdFullScreen(getApplicationContext(), new AdModFacebook.MyAdListener() {
-                @Override
-                public void onAdClicked() {
-                }
-
-                @Override
-                public void onAdClosed() {
-                }
-
-                @Override
-                public void onAdLoaded() {
-                }
-
-                @Override
-                public void onAdOpened() {
-                }
-
-                @Override
-                public void onFaildToLoad(AdError adError) {
-                }
-
-                @Override
-                public void onInterstitialDismissed() {
-                }
-
-                @Override
-                public void onInterstitialDisplayed() {
-                }
-
-                @Override
-                public void onLoggingImpression() {
-                }
-            });
-        }*/
+            }
+        });
     }
 
     public void LoadBannerAd() {
         RelativeLayout adContainer = findViewById(R.id.adView);
-        if (BuildConfig.GOOGlE_AD) {
-            AdMod.buildAdBanner(getApplicationContext(), adContainer, 0, new AdMod.MyAdListener() {
-                @Override
-                public void onAdClicked() {
-                }
-
-                @Override
-                public void onAdClosed() {
-                }
-
-                @Override
-                public void onAdLoaded() {
-                }
-
-                @Override
-                public void onAdOpened() {
-                }
-
-                @Override
-                public void onFaildToLoad(int i) {
-                }
-            });
-        } else if (BuildConfig.FACEBOOK_AD) {
-            AdModFacebook.buildAdBanner(this, adContainer, 0, new AdModFacebook.MyAdListener() {
-                @Override
-                public void onAdClicked() {
-                }
-
-                @Override
-                public void onAdClosed() {
-                }
-
-                @Override
-                public void onAdLoaded() {
-                }
-
-                @Override
-                public void onAdOpened() {
-                }
-
-                @Override
-                public void onFaildToLoad(AdError adError) {
-                }
-
-                @Override
-                public void onInterstitialDismissed() {
-                }
-
-                @Override
-                public void onInterstitialDisplayed() {
-                }
-
-                @Override
-                public void onLoggingImpression() {
-                }
-            });
-        }
+        UnityAds.initialize(this, GameID, test);
+        RelativeLayout layout = findViewById(R.id.adView);
+        BannerView view = new BannerView(this, BANNER_ID, new UnityBannerSize(320, 50));
+        view.load();
+        layout.addView(view);
     }
 }

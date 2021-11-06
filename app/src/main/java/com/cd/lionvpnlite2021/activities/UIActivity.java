@@ -884,7 +884,7 @@ public abstract class UIActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void LoadInterstitialAd() {
-        img_connect = findViewById(R.id.img_connect);
+     /*   img_connect = findViewById(R.id.img_connect);
         img_connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -909,7 +909,7 @@ public abstract class UIActivity extends AppCompatActivity implements View.OnCli
 
 
             }
-        });
+        });*/
     }
 
     public void LoadBannerAd() {

@@ -88,6 +88,7 @@ public class MainActivity extends UIActivity implements TrafficListener, VpnStat
             }
         }); bannerAds();
         initads();
+        
     }
 
 

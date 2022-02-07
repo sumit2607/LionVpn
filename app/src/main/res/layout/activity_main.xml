@@ -447,15 +447,19 @@
             android:layout_marginBottom="1dp" />
 
 
-        <LinearLayout
-            android:id="@+id/unityads"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:background="@drawable/titlebar_bg"
-            android:gravity="right"
-            android:orientation="horizontal">
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/ad_foo"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/banner_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -474,7 +478,7 @@
 
         </LinearLayout>
 
-    </LinearLayout>
+
 
 
     <LinearLayout

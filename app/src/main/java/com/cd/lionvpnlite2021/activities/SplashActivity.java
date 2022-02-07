@@ -50,10 +50,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
+
 
         preference = new Preference(SplashActivity.this);
         preference.setStringpreference(IN_PURCHASE_KEY, BuildConfig.IN_APPKEY);

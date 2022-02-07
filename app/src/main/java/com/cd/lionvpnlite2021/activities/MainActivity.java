@@ -40,6 +40,12 @@ import com.cd.lionvpnlite2021.MainApp;
 import com.cd.lionvpnlite2021.R;
 import com.cd.lionvpnlite2021.dialog.CountryData;
 import com.cd.lionvpnlite2021.dialog.LoginDialog;
+import com.facebook.ads.InterstitialAd;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.gson.Gson;
 import com.northghost.caketube.CaketubeTransport;
 import com.unity3d.ads.UnityAds;
@@ -62,12 +68,8 @@ public class MainActivity extends UIActivity implements TrafficListener, VpnStat
     private String ServerIPaddress = "00.000.000.00";
     @BindView(R.id.uploading_graph)
     protected LottieAnimationView uploading_state_animation;
-    private LinearLayout unityads;
-    public   String intiads = "Interstitial_Android";
-    private TextView RLDownloadLayout;
-    private String GameID = "4437689";
-    private   String BANNER_ID = "Banner_Android";
-    private  boolean test = true;
+    private AdView ad_foo;
+    private InterstitialAd interstitialAd;
 
     @BindView(R.id.downloading_graph)
     protected LottieAnimationView downloading_state_animation;
@@ -78,7 +80,28 @@ public class MainActivity extends UIActivity implements TrafficListener, VpnStat
         UnifiedSDK.addTrafficListener(this);
         UnifiedSDK.addVpnStateListener(this);
 
+
+        ad_foo = (AdView)this.findViewById(R.id.ad_foo);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        }); bannerAds();
+        initads();
     }
+
+
+    private void initads() {
+        //interstitialAd = new InterstitialAd(this);
+        //interstitialAd.loadAd((InterstitialAd.InterstitialLoadAdConfig) new AdRequest.Builder().build());
+
+    }
+
+    private void bannerAds() {
+        ad_foo.loadAd(new AdRequest.Builder().build());
+
+    }
+
 
 
 
